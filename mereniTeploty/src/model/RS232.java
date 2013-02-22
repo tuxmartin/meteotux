@@ -71,5 +71,4 @@ public class RS232 {
 		vlaknoSR.join(); // ceka na ukonceni vlakna
 		return nacteno;	
 	}
-
 }
