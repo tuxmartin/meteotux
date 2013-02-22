@@ -62,7 +62,11 @@ public class XMPPClient {
 				Date date = new Date();
 				String novyStatus = Spustit.MESTO + ": " + Spustit.teplota+"°C "+Spustit.vlhkost+"% ["+df.format(date)+"]";
 				System.out.println(novyStatus);
-				aktulizujStatus(novyStatus);
+				
+				if ( ! (Spustit.teplota.isEmpty() && Spustit.vlhkost.isEmpty()) ) {
+					aktulizujStatus(novyStatus);
+				}
+				
 				try {
 					Thread.sleep(Spustit.xmppStatusUdateInterval * 1000);
 				} catch (InterruptedException e) {
