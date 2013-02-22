@@ -1,0 +1,1 @@
+Arduino-DHT22-master.zip - https://github.com/ringerc/Arduino-DHT22
