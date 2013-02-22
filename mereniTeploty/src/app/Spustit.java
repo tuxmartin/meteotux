@@ -21,21 +21,27 @@ public class Spustit {
 		port232 = new RS232(rs232PortName, rs232BaudRate);
 
 		class SeriovyPort implements Runnable {	
-			DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+			DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss ");
 
 			@SuppressWarnings("static-access")
 			@Override
 			public void run() {
 				while (!ukoncit) {
-					String abc = "";
+					String nacteno = "";
+					Date date = new Date();
 					try {
-						abc = port232.cti(rs232Timeout * 1000);
+						nacteno = port232.cti(rs232Timeout * 1000);
+						nacteno = nacteno.trim(); // odstrani konec radku
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
+										
+					System.out.println(df.format(date) + nacteno);					
 					
-					Date date = new Date();
-					System.out.println(df.format(date) + " " + abc);
+					nacteno = nacteno.replace("C", "");
+					nacteno = nacteno.replace("%", "");					
+					String[] namereneHodnoty = nacteno.split(" "); // index 0 = teplota, index 1 = vlhkost
+					System.out.println(df.format(date)+"Teplota = "+namereneHodnoty[0]+"°C Vlhkost = "+namereneHodnoty[1]+"%");
 					
 					try {
 						Thread.sleep(rs232FrekvenceCteni*1000);
