@@ -38,7 +38,8 @@ public class SerialReader extends Thread {
 
 			} while (!nacteno.contains("\r\n")); // dokud nenarazi na konec radku, tak cte
 			
-			System.out.println("Nacteno: " + nacteno);
+			//System.out.println("Nacteno: " + nacteno); // vypise precteny text
+			RS232.nacteno = nacteno;
 		}
 		
 		// TODO ta vyjimka je nejaka divna - upravit!
