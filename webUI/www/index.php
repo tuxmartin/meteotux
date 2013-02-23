@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta http-equiv="refresh" content="60" />
+	<meta http-equiv="refresh" content="10" />
 	<link href="hlavni.css" rel="stylesheet" type="text/css" media="all" />	
 	<meta name="author" content="<?php echo(AUTOR); ?>" />
 	<title>Počasí v Jičíně</title>   
@@ -88,6 +88,8 @@
 			$dotazMAX=mysql_query(
 				"SELECT  teplota, vlhkost, casMereni FROM Hodnoty WHERE teplota = (SELECT MAX(teplota) FROM Hodnoty) LIMIT 1"
 				) or die("CHYBA MySQL: " . mysql_error());
+			//TODO chybny SQL dotaz: nekdy spatne hleda maximum (a mozna i minimum)
+				
 
 			$dotazMIN=mysql_query(
 					"SELECT  teplota, vlhkost, casMereni FROM Hodnoty WHERE teplota = (SELECT MIN(teplota) FROM Hodnoty) LIMIT 1"
