@@ -21,10 +21,15 @@ public class Spustit {
 	public static final int rs232FrekvenceCteni = 1;	
 	
 	public static final String xmppSERVER = "jabber.cz";
+<<<<<<< HEAD
 	//public static final String xmppJMENO = "prihlasovaci jmeno";
 	//public static final String xmppHESLO = "a heslo...";
 	public static final String xmppJMENO = "pokus123";
 	public static final String xmppHESLO = "pokus123";
+=======
+	public static final String xmppJMENO = "prihlasovaci jmeno";
+	public static final String xmppHESLO = "a heslo...";
+>>>>>>> bf001dfae6a4248a1da6d526634668e36fc57980
 	public static final String xmppNICK = "Pokus 123 :-)";
 	public static final int xmppStatusUdateInterval = 10;
 	public static final String MESTO = "Jičín";
