@@ -81,20 +81,16 @@
 		
 		
 		
-					
-
-			
-
 			<?php /* ----------------------------------------------- */ ?>
 			<div id="rekordy">
 			<?php 
 			// rekorkdy
 			$dotazMAX=mysql_query(
-				"SELECT MAX(teplota) AS teplota, vlhkost, casMereni FROM Hodnoty"
+				"SELECT  teplota, vlhkost, casMereni FROM Hodnoty WHERE teplota = (SELECT MAX(teplota) FROM Hodnoty) LIMIT 1"
 				) or die("CHYBA MySQL: " . mysql_error());
 
 			$dotazMIN=mysql_query(
-					"SELECT MIN(teplota) AS teplota, vlhkost, casMereni FROM Hodnoty"
+					"SELECT  teplota, vlhkost, casMereni FROM Hodnoty WHERE teplota = (SELECT MIN(teplota) FROM Hodnoty) LIMIT 1"
 			) or die("CHYBA MySQL: " . mysql_error());			
 			?>
 			
