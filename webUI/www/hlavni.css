@@ -1,0 +1,101 @@
+/* VYRESETOVANI HODNOT */
+body {
+	margin: 0em;
+	padding: 0em;
+	font-family: Arial, Arial CE, sans-serif;
+}
+
+div {
+	margin: 0em;
+	padding: 0em;
+}
+/* VYRESETOVANI HODNOT */
+
+#obal {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0em;
+	margin-bottom: 0em;
+	width: 95%;	
+}
+
+#hlavicka { 
+	margin: 0.5em 0;
+	/*padding: 0.5em;*/
+	text-decoration: none;
+	/* border: 1px solid black; */
+}
+
+#hlavicka #logo {
+	background-color: #ffe0e0;
+	margin: 0em;
+	padding: 0em;
+	text-align: center;
+	font-size: 150%;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+#obsah { 
+	padding: 0.5em;
+	/* border: 1px solid black; */
+	min-height: 10em;
+}
+
+#obsah p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;	
+	line-height: 125%;
+}
+
+
+table {
+	border-spacing: 0em;
+}
+
+td, th {
+	padding: 0.5em;	
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+th {
+	text-align: left;
+}
+
+img {
+	border: 0px;
+}
+
+h1 {
+	font-size: 150%;
+	text-indent: 0em;
+}
+
+h2 {
+	font-size: 130%;
+	text-indent: 0.5em;
+}
+
+h3 {
+	font-size: 110%;
+	text-indent: 1em;
+}
+
+abbr, acronym {
+	border-bottom: 1px dotted black;
+}
+
+.nejteplejsi {
+	background-color: #FFBFBF;
+}
+
+.nejstudenejsi {
+	background-color: #C3C2FF;
+}
+
+.vysledky {
+	margin-bottom: 1em;
+}
