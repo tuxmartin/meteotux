@@ -21,8 +21,8 @@ public class Spustit {
 	public static final int rs232FrekvenceCteni = 1;	
 	
 	public static final String xmppSERVER = "jabber.cz";
-	public static final String xmppJMENO = "prihlasovaci jmeno";
-	public static final String xmppHESLO = "a heslo...";
+	public static final String xmppJMENO = "pokus123";
+	public static final String xmppHESLO = "XXXXXXXXXXXXXXXX";
 	public static final String xmppNICK = "Pokus 123 :-)";
 	public static final int xmppStatusUdateInterval = 10;
 	public static final String MESTO = "Jičín";
@@ -33,7 +33,7 @@ public class Spustit {
 	public static final String httpVlhkostParam = "v";
 	public static final String httpDateTimeParam = "d";
 	public static final int httpUdateInterval = 10;
-	
+	public static final String httpTMEP = "http://localhost/martin/TMEP-6.1/app/index.php";	
 	
 	public static String teplota = "";
 	public static String vlhkost = "";

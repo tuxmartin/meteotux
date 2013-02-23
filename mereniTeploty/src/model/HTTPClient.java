@@ -28,7 +28,7 @@ public class HTTPClient {
 		public void run() {
 			while (!konec) {
 				Date date = new Date();
-				InputStream in;
+				InputStream in1, in2;
 
 				try {
 					String urlString =  Spustit.httpURL + "?" +
@@ -36,10 +36,24 @@ public class HTTPClient {
 							Spustit.httpTeplotaParam + "=" + Spustit.teplota + "&" +
 							Spustit.httpVlhkostParam + "=" + Spustit.vlhkost + "&" +
 							Spustit.httpDateTimeParam + "=" + df.format(date);
+					
+					// http://localhost/martin/TMEP-6.1/app/index.php?tempV=+21.50&humV=50.45
+					// http://code.google.com/p/tmep/
+					String urlTMEPString =  Spustit.httpTMEP + "?" +
+							"tempV=" + Spustit.teplota + "&" +
+							"humV=" + Spustit.vlhkost ;
+					
 										
 					if ( ! (Spustit.teplota.isEmpty() && Spustit.vlhkost.isEmpty()) ) {
+						
+						//System.out.println(urlTMEPString);
+						in1 = new URL(urlTMEPString).openStream();
+						// Nutne v TMEP vypnout detekci mobilu, jinak nefunguje pridani!!! 
+						// V TMEP je sptane detekce user-agentu.
+						
 						//System.out.println(urlString);
-						in = new URL(urlString).openStream();
+						in2 = new URL(urlString).openStream();
+						
 						// TODO Prasarna!!! Predelat na Apache HttpClient http://hc.apache.org/httpcomponents-client-ga/index.html
 					}
 					
