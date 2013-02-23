@@ -1,17 +1,12 @@
 <?php require_once("config.php"); ?>
-
-<?php
-?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
 <head>
-	<meta http-equiv="content-language" content="cs" />
-	<meta name="language" content="cs" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="refresh" content="60" />
 	<link href="hlavni.css" rel="stylesheet" type="text/css" media="all" />	
 	<meta name="author" content="<?php echo(AUTOR); ?>" />
-	<title><?php echo(HTML_TITLE); ?></title>   
+	<title>Počasí v Jičíně</title>   
 	<meta name="description" content="" />
 </head>
 <body>
@@ -23,11 +18,77 @@
 		<div id="obsah">
 		
 		
+		
+			<?php /* ----------------------------------------------- */ ?>
+			<div id="pravy">
+			<?php 
+			// aktualni udaje
+			$dotaz=mysql_query(
+				"SELECT teplota, vlhkost, casMereni FROM Hodnoty ORDER BY casMereni DESC LIMIT 1"
+				) or die("CHYBA MySQL: " . mysql_error());		
+
+				$zaznam=MySQL_Fetch_Array($dotaz);		
+
+				/* ROSNY BOD */
+				$LogEW = 0.66077 + 7.5*$zaznam["teplota"]/(237.3+$zaznam["teplota"]) + (log10($zaznam["vlhkost"])-2);
+				$rosnyBod = ((0.66077 - $LogEW)*237.3) / ($LogEW - 8.16077) ;
+				// http://list.hw.cz/pipermail/hw-list/2004-November/228770.html
+				/* ROSNY BOD */
+				
+				?>
+				<fieldset id="aktaulne">
+					<legend>Aktuálně</legend>
+					Teplota: <strong><?php echo $zaznam["teplota"];?> °C</strong><br />
+					Vlhkost: <strong><?php echo $zaznam["vlhkost"];?> %</strong><br />
+					Čas: <?php echo $zaznam["casMereni"];?><br />
+					Rosný bod: <em><?php echo number_format($rosnyBod, 2)?> °C</em>
+
+				
+				</fieldset>
+
+				
+				
+				
+				
+			<?php /* ----------------------------------------------- */ ?>
+			<div id="celkovyPocetMereni">
+			<?php 
+			// celkovy pocet mereni
+			$dotaz=mysql_query(
+				"SELECT COUNT(teplota) AS pocet FROM Hodnoty"
+				) or die("CHYBA MySQL: " . mysql_error());		
+
+				$zaznam=MySQL_Fetch_Array($dotaz);		
+				?>
+				<p>
+				Celkový počet měření: <strong><?php echo $zaznam["pocet"];?></strong>
+				</p>
+				
+				<p>
+					<h2>RSS</h2>
+					Teplota a vlhkost: <a href="http://localhost/martin/teplota/www/rss.php">http://localhost/martin/teplota/www/rss.php</a> <br />
+					Pouze teplota: <a href="http://localhost/martin/teplota/www/rss.php?p=t">http://localhost/martin/teplota/www/rss.php?p=t</a> <br />
+					Pouze vlhkost: <a href="http://localhost/martin/teplota/www/rss.php?p=v">http://localhost/martin/teplota/www/rss.php?p=v</a> <br />
+				</p>
+				
+			</div>	
+			<?php /* ----------------------------------------------- */ ?>
+			
+			
+			
+			</div>	
+			<?php /* ----------------------------------------------- */ ?>
+		
+		
+		
+					
 
 			
 
 			<?php /* ----------------------------------------------- */ ?>
+			<div id="rekordy">
 			<?php 
+			// rekorkdy
 			$dotazMAX=mysql_query(
 				"SELECT MAX(teplota) AS teplota, vlhkost, casMereni FROM Hodnoty"
 				) or die("CHYBA MySQL: " . mysql_error());
@@ -75,13 +136,14 @@
 				}
 				?>
 			</table>
+			</div>
 			<?php /* ----------------------------------------------- */ ?>
 			
 			
 			<?php /* ----------------------------------------------- */ ?>
-			<?php 
-			//	mysql_query("INSERT INTO Hodnoty (teplota, vlhkost, casMereni)			VALUES (
-
+			<div id="poslednich10">
+			<?php 			
+			// poslednich 10 mereni
 			$dotaz=mysql_query(
 				"SELECT teplota, vlhkost, casMereni FROM Hodnoty ORDER BY casMereni DESC LIMIT 10"
 				) or die("CHYBA MySQL: " . mysql_error());
@@ -109,6 +171,7 @@
 				}
 				?>
 			</table>
+			</div>
 			<?php /* ----------------------------------------------- */ ?>
 
 

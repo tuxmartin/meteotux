@@ -19,7 +19,7 @@ elseif ($_GET["p"] == "v") {
 	$vypsat = $zaznam["vlhkost"] . "%";
 }
 else {
-	$vypsat = $zaznam["teplota"] . "°C " . $zaznam["vlhkost"] . "%";
+	$vypsat = $zaznam["teplota"] . "°C " . $zaznam["vlhkost"] . "%";	
 }
 	
 ?>

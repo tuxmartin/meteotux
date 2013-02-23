@@ -7,10 +7,9 @@ define("SQL_USERNAME","meteotux");
 define("SQL_PASSWORD","meteotux");
 define("SQL_CHARSET","utf8");
 
-define("HESLO","sbTmdp12wS");
+define("HESLO","sbTmdp12wS");  // !!! ZMENIT !!!
 
 define("AUTOR", "tuxmartin");
-define("HTML_TITLE", "meteotux Jicin");
 
 mysql_connect(SQL_HOST, SQL_USERNAME, SQL_PASSWORD) or die("Nelze se pripojit k MySQL: " . mysql_error());
 mysql_select_db(SQL_DBNAME) or die("Nelze vybrat databazi: ". mysql_error());   

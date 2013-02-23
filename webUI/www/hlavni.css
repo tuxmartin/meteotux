@@ -20,23 +20,35 @@ div {
 }
 
 #hlavicka { 
+	text-align: center;
 	margin: 0.5em 0;
-	/*padding: 0.5em;*/
 	text-decoration: none;
 	/* border: 1px solid black; */
 }
 
-#hlavicka #logo {
-	background-color: #ffe0e0;
-	margin: 0em;
-	padding: 0em;
-	text-align: center;
-	font-size: 150%;
-	font-weight: bold;
-	letter-spacing: 1px;
+#rekordy { 
+	/* background-color: yellow; */
+	width: 30em;
+	float: left;
+}
+
+#pravy { 
+	/* background-color: green; */
+	float: right;
+	padding: 0.5em;
+
+}
+
+#aktualne {
+	font-size: 200%;
+}
+
+#poslednich10 {
+	clear: left;
 }
 
 #obsah { 
+	/* background-color: maroon; */
 	padding: 0.5em;
 	/* border: 1px solid black; */
 	min-height: 10em;
