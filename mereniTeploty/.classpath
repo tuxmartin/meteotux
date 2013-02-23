@@ -5,5 +5,6 @@
 	<classpathentry kind="lib" path="lib/smack_3_2_2/smack.jar"/>
 	<classpathentry kind="lib" path="lib/smack_3_2_2/smackx.jar"/>
 	<classpathentry kind="lib" path="/usr/share/java/RXTXcomm.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io-2.4/commons-io-2.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
