@@ -1,0 +1,4 @@
+Webova app TMEP http://code.google.com/p/tmep/ pro zobrazovani hodnota z Papouch TME teplomeru http://www.papouch.com/cz/website/mainmenu/mainpage/ pouziva nasledujici syntaxi pro vkladani hodnot do databaze:
+
+http://localhost/martin/TMEP-6.1/app/index.php?tempV=+32.2&humV=50.1
+
