@@ -39,7 +39,6 @@ public class HTTPClient {
 										
 					if ( ! (Spustit.teplota.isEmpty() && Spustit.vlhkost.isEmpty()) ) {
 						//System.out.println(urlString);
-						System.out.println(urlString);
 						in = new URL(urlString).openStream();
 						// TODO Prasarna!!! Predelat na Apache HttpClient http://hc.apache.org/httpcomponents-client-ga/index.html
 					}
