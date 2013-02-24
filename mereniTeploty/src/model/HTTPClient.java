@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,7 +29,6 @@ public class HTTPClient {
 		public void run() {
 			while (!konec) {
 				Date date = new Date();
-				InputStream in1, in2;
 
 				try {
 					String urlString =  Spustit.httpURL + "?" +
@@ -47,14 +47,14 @@ public class HTTPClient {
 					if ( ! (Spustit.teplota.isEmpty() && Spustit.vlhkost.isEmpty()) ) {
 						
 						//System.out.println(urlTMEPString);
-						in1 = new URL(urlTMEPString).openStream();
-						// Nutne v TMEP vypnout detekci mobilu, jinak nefunguje pridani!!! 
-						// V TMEP je sptane detekce user-agentu.
+						URLConnection con = new URL(urlTMEPString).openConnection();
+				        con.setRequestProperty("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.70 Safari/537.17");
+				        InputStream response = con.getInputStream();
 						
 						//System.out.println(urlString);
-						in2 = new URL(urlString).openStream();
+				        InputStream in = new URL(urlString).openStream();
 						
-						// TODO Prasarna!!! Predelat na Apache HttpClient http://hc.apache.org/httpcomponents-client-ga/index.html
+						// TODO Zvazit prpesani pomociApache HttpClient http://hc.apache.org/httpcomponents-client-ga/index.html
 					}
 					
 				 
