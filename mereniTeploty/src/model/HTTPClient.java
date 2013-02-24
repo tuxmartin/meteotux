@@ -54,7 +54,7 @@ public class HTTPClient {
 						//System.out.println(urlString);
 				        InputStream in = new URL(urlString).openStream();
 						
-						// TODO Zvazit prpesani pomociApache HttpClient http://hc.apache.org/httpcomponents-client-ga/index.html
+						// TODO Zvazit prepsani pomoci Apache HttpClient http://hc.apache.org/httpcomponents-client-ga/index.html
 					}
 					
 				 
