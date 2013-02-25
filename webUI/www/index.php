@@ -88,7 +88,7 @@
 			$dotazMAX=mysql_query(
 				"SELECT  teplota, vlhkost, casMereni FROM Hodnoty WHERE teplota = (SELECT MAX(teplota) FROM Hodnoty) LIMIT 1"
 				) or die("CHYBA MySQL: " . mysql_error());
-			//TODO chybny SQL dotaz: nekdy spatne hleda maximum (a mozna i minimum)
+			// FIXME chybny SQL dotaz: nekdy spatne hleda maximum (a mozna i minimum)
 				
 
 			$dotazMIN=mysql_query(
