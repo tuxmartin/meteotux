@@ -2,3 +2,11 @@ Webova app TMEP http://code.google.com/p/tmep/ pro zobrazovani hodnota z Papouch
 
 http://localhost/martin/TMEP-6.1/app/index.php?tempV=+32.2&humV=50.1
 
+TMEP nepobezi v PC s teplomerem, ale na webhostingu.
+Protoze PC s teplomerem nebude mit verejenou IPv4 adresu,
+bylo by nutne vypnout v TMEPu kontrolu IP - za chvili by
+nam nekdo udelal v namerenych hodnotach pekny bordel...
+Proto TMEP prijima hodnoty pouze z localhostu a dalsi
+skript "teplota.php" na localhostu (webhostingu) bude
+pres CURL volat TMEP.
+Komplikovane, ale funkcni :-)
