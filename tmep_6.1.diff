@@ -1,0 +1,16 @@
+--- /var/www/martin/TMEP-6.1/app/index_ORIGINAL_TMEP.php
++++ /var/www/martin/TMEP-6.1/app/index.php
+@@ -35,7 +35,7 @@
+  //////////////////////////////////////////////////////////////////////////
+ 
+   // pokud stranku vola teplomer, ulozime hodnotu
+-  if(isset($_GET['temp']) OR isset($_GET[$GUID]) OR isset($_GET['tempV']))
++  if( $_SERVER['SERVER_ADDR']=="127.0.0.1" AND (isset($_GET['temp']) OR isset($_GET[$GUID]) OR isset($_GET['tempV']))  )
+   {
+ 
+     // novejsi TME
+@@ -217,4 +217,4 @@
+ <?php
+   } // konec pokud si stranku prohlizi uzivatel
+     // a nevola ji teplomer
+-?>+?>
