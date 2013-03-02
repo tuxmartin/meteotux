@@ -1,7 +1,7 @@
 #include <DHT22.h>
 
 // Connect a 4.7K resistor between VCC and the data pin (strong pullup)
-#define DHT22_PIN 2
+#define DHT22_PIN 8
 
 // Setup a DHT22 instance
 DHT22 myDHT22(DHT22_PIN);
