@@ -47,9 +47,9 @@ public class HTTPClient {
 					if ( ! (Spustit.teplota.isEmpty() && Spustit.vlhkost.isEmpty()) ) {
 						
 						//System.out.println(urlTMEPString);
-						URLConnection con = new URL(urlTMEPString).openConnection();
-				        con.setRequestProperty("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.70 Safari/537.17");
-				        InputStream response = con.getInputStream();
+						//URLConnection con = new URL(urlTMEPString).openConnection();
+				       // con.setRequestProperty("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.70 Safari/537.17");
+				       // InputStream response = con.getInputStream();
 						
 						//System.out.println(urlString);
 				        InputStream in = new URL(urlString).openStream();
