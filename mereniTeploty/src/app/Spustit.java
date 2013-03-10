@@ -1,8 +1,12 @@
 package app;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 
 import model.HTTPClient;
 import model.RS232;
@@ -15,30 +19,61 @@ public class Spustit {
 	private static XMPPClient jabber;
 	private static HTTPClient http;
 	
-	public static final String rs232PortName = "/dev/ttyUSB0";
-	public static final int rs232BaudRate = 9600;
-	public static final int rs232Timeout = 10;	
-	public static final int rs232FrekvenceCteni = 1;	
+	public static final String rs232PortName;
+	public static final int rs232BaudRate;
+	public static final int rs232Timeout;
+	public static final int rs232FrekvenceCteni;	
 	
-	public static final String xmppSERVER = "jabber.cz";
-	public static final String xmppJMENO = "pokus123";
-	public static final String xmppHESLO = "XXXXXXXXXXXXXXXX";
-	public static final String xmppNICK = "Pokus 123 :-)";
-	public static final int xmppStatusUdateInterval = 10;
-	public static final String MESTO = "Jičín";
-	public static final String httpURL = "http://localhost/martin/teplota/www/teplota.php";
-	public static final String httpHeslo = "sbTmdp12wS";
-	public static final String httpHesloParam = "h";
-	public static final String httpTeplotaParam = "t";
-	public static final String httpVlhkostParam = "v";
-	public static final String httpDateTimeParam = "d";
-	public static final int httpUdateInterval = 10;
-	public static final String httpTMEP = "http://localhost/martin/TMEP-6.1/app/index.php";	
+	public static final String xmppSERVER;
+	public static final String xmppJMENO;
+	public static final String xmppHESLO;
+	public static final String xmppNICK;
+	public static final int xmppStatusUdateInterval;
+	public static final String MESTO;
+	public static final String httpURL;
+	public static final String httpHeslo;
+	public static final String httpHesloParam;
+	public static final String httpTeplotaParam;
+	public static final String httpVlhkostParam;
+	public static final String httpDateTimeParam;
+	public static final int httpUdateInterval;
+	public static final String httpTMEP;
 	
 	public static String teplota = "";
 	public static String vlhkost = "";
 	
 	private static boolean ukoncit = false;
+	
+	static {
+		Properties p = new Properties();
+		try {
+			p.load(new FileInputStream("nastaveni.ini"));						
+		} catch (FileNotFoundException e) {
+			System.out.println("Soubor s nastavenim nenalezen!");
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}			
+		
+		rs232PortName = p.getProperty("rs232PortName");
+		rs232BaudRate = Integer.parseInt(p.getProperty("rs232BaudRate"));
+		rs232Timeout = Integer.parseInt(p.getProperty("rs232Timeout"));
+		rs232FrekvenceCteni = Integer.parseInt(p.getProperty("rs232FrekvenceCteni"));							
+		xmppSERVER = p.getProperty("xmppSERVER");
+		xmppJMENO = p.getProperty("xmppJMENO");
+		xmppHESLO = p.getProperty("xmppHESLO");
+		xmppNICK = p.getProperty("xmppNICK");
+		xmppStatusUdateInterval = Integer.parseInt(p.getProperty("xmppStatusUdateInterval"));
+		MESTO = p.getProperty("MESTO");
+		httpURL = p.getProperty("httpURL");
+		httpHeslo = p.getProperty("httpHeslo");
+		httpHesloParam = p.getProperty("httpHesloParam");
+		httpTeplotaParam = p.getProperty("httpTeplotaParam");
+		httpVlhkostParam = p.getProperty("httpVlhkostParam");
+		httpDateTimeParam = p.getProperty("httpDateTimeParam");
+		httpUdateInterval = Integer.parseInt(p.getProperty("httpUdateInterval"));
+		httpTMEP = p.getProperty("httpTMEP");
+	}
 	
 	public static void main(String[] args) throws InterruptedException, XMPPException {
 		port232 = new RS232(rs232PortName, rs232BaudRate);
