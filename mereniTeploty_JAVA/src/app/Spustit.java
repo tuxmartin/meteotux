@@ -16,7 +16,7 @@ import org.jivesoftware.smack.XMPPException;
 
 public class Spustit {
 	private static RS232 port232;
-	private static XMPPClient jabber;
+//	private static XMPPClient jabber;
 	private static HTTPClient http;
 	
 	public static final String rs232PortName;
@@ -77,7 +77,7 @@ public class Spustit {
 	
 	public static void main(String[] args) throws InterruptedException, XMPPException {
 		port232 = new RS232(rs232PortName, rs232BaudRate);
-		jabber = new XMPPClient();
+//		jabber = new XMPPClient();
 		http = new HTTPClient();
 
 		class SeriovyPort implements Runnable {	
