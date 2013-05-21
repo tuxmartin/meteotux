@@ -10,12 +10,13 @@ Created on 21.5.2013
 '''
 
 import serial, httplib, datetime, time
+from threading import Thread
 
 
 # # # # # # # # # # NASTAVENI # # # # # # # # # # 
 webHeslo =          'heslo123'
 frekvenceMereni =   60 # [s]
-urlWeb =              'localhost'
+urlWeb =            'localhost'
 portRS232 =         '/dev/ttyUSB0'
 # # # # # # # # # # NASTAVENI # # # # # # # # # # 
 
@@ -90,10 +91,11 @@ if ser.isOpen():
                     
             response = ser.readline()
             #print("read data: " + response)
-            if response != '':
-                zpracujDataZPortu(response)       
+            if response != '':           
+                vlakno = Thread(target=zpracujDataZPortu, args=(response,))
+                vlakno.start()       
                 
-            time.sleep(frekvenceMereni-1) # -1 kvuli potrebne dobe na zmereni a zpracovani hodnot)
+            time.sleep(frekvenceMereni)
 ### TODO: cas se postupne o 1s prodluzuje - opravit !!!!!!!!!!!!!!!!!!!            
     except Exception, e1:
         print "error communicating...: " + str(e1) 
