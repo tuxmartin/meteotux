@@ -1,4 +1,6 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
+# bez definovani utf-8 nejde tisknout znak stupnu: "°"
 
 '''
 Created on 21.5.2013
@@ -6,7 +8,8 @@ Created on 21.5.2013
 @author: tuxmartin
 '''
 
-import serial, time, httplib
+import serial, httplib
+from time import gmtime, strftime, sleep
 
 # ---------------------------------------
 def httpOdeslat(teplota, vlhkost):
@@ -18,7 +21,7 @@ def httpOdeslat(teplota, vlhkost):
 
     response = httpServ.getresponse()
     if response.status == httplib.OK:
-        print "Output from HTTP request"
+        #print "Output from HTTP request"
         print  response.read()
 
     httpServ.close()
@@ -27,19 +30,14 @@ def httpOdeslat(teplota, vlhkost):
     
  # ---------------------------------------   
 def zpracujDataZPortu(text):
-    '''
-    nacteno = nacteno.replace("C", "");
-    nacteno = nacteno.replace("%", "");                    
-    String[] namereneHodnoty = nacteno.split(" "); // index 0 = teplota, index 1 = vlhkost
-    teplota = namereneHodnoty[0];
-    vlhkost = namereneHodnoty[1];
-    '''
     text = text.replace('C', '')
     text = text.replace('%', '')
+    text = text.replace('\r\n', '')    
     
     textRozdeleno = text.split(' ')
     teplota = textRozdeleno[0]
     vlhkost = textRozdeleno[1]
+    print strftime("%d.%m.%Y %H:%M:%S", gmtime()) + " " + teplota + "°C " + vlhkost + "%"
     httpOdeslat(teplota, vlhkost)
 # ---------------------------------------
 
@@ -51,10 +49,12 @@ ser = serial.Serial(
     bytesize=serial.EIGHTBITS
 )
 
-ser.timeout = 1		#non-block read
-#ser.timeout = 2	#timeout block read
+ser.timeout = 7		#arduino posila data kazdych 5s
+#timeout = None: wait forever
+#timeout = 0: non-blocking mode (return immediately on read)
+#timeout = x: set timeout to x seconds (float allowed
 
-ser.writeTimeout = 2     #timeout for write
+ser.writeTimeout = 2
 
 try: 
     ser.open()
@@ -68,12 +68,13 @@ if ser.isOpen():
         while True:
             ser.flushInput()    #flush input buffer, discarding all its contents            
             ser.flushOutput()   #flush output buffer, aborting current output 
-        
-            time.sleep(0.5)     #give the serial port sometime to receive the data
+            
+            #time.sleep(0.5)     #give the serial port sometime to receive the data
         
             response = ser.readline()
-            print("read data: " + response)
-            zpracujDataZPortu(response)       
+            #print("read data: " + response)
+            if response != '':
+                zpracujDataZPortu(response)       
         
     except Exception, e1:
         print "error communicating...: " + str(e1) 
@@ -81,4 +82,3 @@ if ser.isOpen():
         ser.close()        
 else:
     print "cannot open serial port "
-
