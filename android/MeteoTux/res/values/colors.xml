@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
    <color name="pruhledna_bila">#20FFFFFF</color>
+   <color name="napulPruhledna_bila">#80FFFFFF</color>
+   <color name="pruhledna_200_255_bila">#C8FFFFFF</color>
+   <color name="bila">#FFFFFF</color>
 </resources>
