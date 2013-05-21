@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -17,6 +20,7 @@ import android.widget.RemoteViews;
 
 public class MeteoTux extends AppWidgetProvider {
 	String newline = System.getProperty("line.separator");
+	DateFormat df = new SimpleDateFormat("dd.MM. HH:mm");
 
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
@@ -48,7 +52,7 @@ public class MeteoTux extends AppWidgetProvider {
 		public void aktualizujTextWidgetu() {
 			URL url;
 			try {
-				url = new URL("http://192.168.1.11/martin/pocasi.txt");
+				url = new URL("http://eu.vancl.eu/jicin-teplota/aktualni-teplota-v-jicine.txt");
 				url.openConnection();
 
 				BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -59,9 +63,9 @@ public class MeteoTux extends AppWidgetProvider {
 				}
 				in.close();
 				
-				// pro soubor formatu: "-99,9°C 100%"
+				Date date = new Date();
 				String precteno = buffer.toString().replace(" ", "\n");
-				remoteViews.setTextViewText(R.id.widget_textview, precteno);	
+				remoteViews.setTextViewText(R.id.widget_textview, precteno + "°C\n" + df.format(date));	
 				
 			} catch (MalformedURLException e) {
 				System.out.println("MalformedURLException");
