@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="eu.vancl.martin.meteotux"
+    android:installLocation="internalOnly"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="8" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:icon="@drawable/thermometer"
+        android:label="@string/app_name"
+        android:logo="@drawable/thermometer"
+        android:permission="android.permission.INTERNET" >
+
+        <!-- Broadcast Receiver that will process AppWidget Updates -->
+        <receiver
+            android:name="MeteoTux"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/meteotux_provider" />
+        </receiver>
+    </application>
+
+</manifest>
