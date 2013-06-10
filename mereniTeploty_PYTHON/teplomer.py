@@ -9,18 +9,18 @@ Created on 21.5.2013
 @author: tuxmartin
 '''
 
-import serial, httplib, datetime, time
+import serial, httplib, datetime, time, syslog
 from threading import Thread
 
 
 # # # # # # # # # # NASTAVENI # # # # # # # # # # 
-webHeslo =          'heslo123'
+webHeslo =          'XXXX'
 frekvenceMereni =   60 # [s]
-urlWeb =            'localhost'
+urlWeb =            'XXX.XXX.XX'
 portRS232 =         '/dev/ttyUSB0'
 # # # # # # # # # # NASTAVENI # # # # # # # # # # 
 
-
+syslog.syslog('Teplomer spusten')
 # ---------------------------------------
 def httpOdeslat(teplota, vlhkost):
     httpServ = httplib.HTTPConnection(urlWeb, 80)
@@ -58,6 +58,7 @@ def zpracujDataZPortu(text):
     teplota = textRozdeleno[0]
     vlhkost = textRozdeleno[1]
     if teplota != '' and vlhkost != '':
+		syslog.syslog(datetime.datetime.now().strftime('%d.%m.%Y %H:%M:%S') + " " + teplota + "°C " + vlhkost + "%")
         print datetime.datetime.now().strftime('%d.%m.%Y %H:%M:%S') + " " + teplota + "°C " + vlhkost + "%"
         httpOdeslat(teplota, vlhkost)
 # ---------------------------------------
@@ -80,6 +81,7 @@ ser.writeTimeout = 2
 try: 
     ser.open()
 except Exception, e:
+	syslog.syslog("error open serial port: " + str(e))
     print "error open serial port: " + str(e)
     exit()
         
@@ -98,8 +100,10 @@ if ser.isOpen():
             time.sleep(frekvenceMereni)
 ### TODO: cas se postupne o 1s prodluzuje - opravit !!!!!!!!!!!!!!!!!!!            
     except Exception, e1:
+		syslog.syslog("error communicating...: " + str(e1))
         print "error communicating...: " + str(e1) 
     finally:
         ser.close()        
 else:
+	syslog.syslog("cannot open serial port ")
     print "cannot open serial port "
