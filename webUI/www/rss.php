@@ -39,7 +39,7 @@ else {
 /*
 specifikace povinnych RSS elementu: http://feed2.w3.org/docs/rss2.html
 
-Androidu widget:
+Android widget:
 https://play.google.com/store/apps/details?id=de.j4velin.rssWidget
 https://dl.dropbox.com/u/6943408/teplomerRSS.png
 */
