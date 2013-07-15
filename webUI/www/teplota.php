@@ -21,12 +21,6 @@ if ($_GET["h"] == HESLO) {
 	echo "</pre>";
 	*/
 	
-	mysql_query("INSERT INTO Hodnoty (teplota, vlhkost, casMereni)
-			VALUES (
-			'".mysql_real_escape_string($teplota)."',
-			'".mysql_real_escape_string($vlhkost)."',
-			'".mysql_real_escape_string($datum)."')
-			") or die("CHYBA MySQL: " . mysql_error());
 
 }
 
