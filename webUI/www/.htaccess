@@ -1,0 +1,26 @@
+# BEGIN Compress text files
+<ifModule mod_deflate.c>
+AddOutputFilterByType DEFLATE \
+ text/html \
+ text/xml \
+ text/css \
+ text/plain \
+ image/svg+xml \
+ application/xhtml+xml \
+ application/xml \
+ application/rdf+xml \
+ application/rss+xml \
+ application/atom+xml \
+ text/javascript \
+ text/ecmascript \
+ application/javascript \
+ application/x-javascript \
+ application/ecmascript \
+ application/json \
+ application/x-font-ttf \
+ application/x-font-otf \
+ font/truetype \
+ font/opentype \
+ application/x-pointplus
+</ifModule>
+# END Compress text files
