@@ -2,7 +2,7 @@
 
 <?php
 
-// URL: http://localhost/martin/teplota/teplota.php?h=sbTmdp12wS&t=20.90&v=50.50&d=23.02.2013_00.00.24
+// URL: http://localhost/martin/teplota/teplota.php?h=sbTmdp12wS&t=20.90&v=50.50
 
 
 if ($_GET["h"] == HESLO) {
@@ -10,18 +10,8 @@ if ($_GET["h"] == HESLO) {
 
 	$teplota = $_GET["t"];
 	$vlhkost = $_GET["v"];
-	$datum   = $_GET["d"];
 	echo "Teplota = ". $teplota . "<br />";
 	echo "Vlhkost = ". $vlhkost . "<br />";
-	echo "Datum = "  . $datum   . "<br />";
-
-	/*
-	echo "<pre>";
-	print_r ( date_parse($datum) );
-	echo "</pre>";
-	*/
-	
-
 }
 
 /* --------- TMEP --------- */
@@ -29,9 +19,9 @@ if ($_GET["h"] == HESLO) {
 // http://localhost/martin/TMEP-6.1/app/index.php?tempV=+21.2&humV=50.1
 $tempV = $teplota;
 $humV = $vlhkost;
-
+echo $_SERVER['SERVER_ADDR'];
 $userAgent = '"User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.70 Safari/537.17"';
-$url = "http://localhost/martin/TMEP-6.1/app/index.php?tempV=$tempV&humV=$humV";
+$url = "http://pocasi.vancl.eu/index.php?pass=PYSbafdjjRE&tempV=$tempV&humV=$humV";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL,$url);
 
@@ -52,4 +42,3 @@ curl_close ($ch);
 
 /* --------- TMEP --------- */
 ?>
-
