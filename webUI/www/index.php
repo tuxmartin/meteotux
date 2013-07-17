@@ -34,6 +34,7 @@
 				</li>
 				<li>Postupujeme podle videa</li>
 			</ol>
+			<img src="android-ukazka.png" width="390" height="397" alt="Ukázka widgetu na Androidu" />
 			</p>
 
 			<p>
