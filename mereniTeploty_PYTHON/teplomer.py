@@ -61,15 +61,9 @@ def zpracujDataZPortu(text):
     teplota = textRozdeleno[0]
     vlhkost = textRozdeleno[1]
     if teplota != '' and vlhkost != '':
-<<<<<<< HEAD
         if teplota > 30000: # 30000 bude fungovat do -76,7°C
-            teplota = (32767-(teplota*10)) / (-10) # Kvuli chybe v DHT knihovne (pro zaporna cisla vraci MAX_INT - namerena hodnota). 32767 je MAX_INT http://arduino.cc/en/Reference/Int
+                teplota = (32767-(teplota*10)) / (-10) # Kvuli chybe v DHT knihovne (pro zaporna cisla vraci MAX_INT - namerena hodnota). 32767 je MAX_INT http://arduino.cc/en/Reference/Int
         syslog.syslog("meteotux " + datetime.datetime.now().strftime('%d.%m.%Y %H:%M:%S') + " " + teplota + "C " + vlhkost + "%")
-=======
-		if teplota > 30000: # 30000 bude fungovat do -76,7°C
-			teplota = (32767-(teplota*10)) / (-10) # Kvuli chybe v DHT knihovne (pro zaporna cisla vraci MAX_INT - namerena hodnota). 32767 je MAX_INT http://arduino.cc/en/Reference/Int
-		syslog.syslog("meteotux " + datetime.datetime.now().strftime('%d.%m.%Y %H:%M:%S') + " " + teplota + "C " + vlhkost + "%")
->>>>>>> 693e91947ff1a2e72ff80a098bb5cc24f60140ef
         print datetime.datetime.now().strftime('%d.%m.%Y %H:%M:%S') + " " + teplota + "C " + vlhkost + "%"
         httpOdeslat(teplota, vlhkost)
 # ---------------------------------------
